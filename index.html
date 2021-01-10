@@ -37,7 +37,7 @@ function printRepoCount() {
   languages.forEach((i) => {
     languagescolor.push('<span style="color:' + getRandomColor() + '">' + i + '</span>');
   });
-  document.getElementById('uses').innerHTML = languagescolor;
+  document.getElementById('uses').innerHTML = languagescolor.slice(0,-1) + " and " + languagescolor[languages.length - 1];
 }
 
 var request = new XMLHttpRequest();
