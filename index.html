@@ -1,0 +1,61 @@
+<!doctype html>
+ <html>
+ <head>
+ <meta charset="utf-8">
+ <link rel="stylesheet" href="index.css"/>
+ <title>Embuer</title>
+ <link rel="icon" href="favicon.ico"/>
+ </head>
+
+ <body>
+ <h2>I'm a <span id="age"></span> year-old developer from germany</h2>
+ <p> who uses <span id="uses"></span> </p>
+
+
+<p><a class="mailto" href="mailto:lennart@urbi.de">Contact me!</a> <a class="github" href="https://github.com/Embuer">Github</a></p>
+
+<script>
+let ageEl = document.getElementById("age");
+setInterval(() => {
+	let time = (new Date() - new Date(1102827600000)) / (1000 * 60 * 60 * 24 * 365.25);
+	ageEl.innerText = time.toString().substring(0, 12);
+}, 50);
+</script>
+
+<script>
+const languages = [];
+function printRepoCount() {
+  var responseObj = JSON.parse(this.responseText);
+  responseObj.forEach((obj) => {
+    if (!languages.includes(obj.language) && obj.language != null) {
+      languages.push(obj.language)}
+  });
+
+  const languagescolor = [];
+  languages.forEach((i) => {
+    languagescolor.push('<span style="color:' + getRandomColor() + '">' + i + '</span>');
+  });
+  document.getElementById('uses').innerHTML = languagescolor;
+}
+
+var request = new XMLHttpRequest();
+request.onload = printRepoCount;
+request.open('get', 'https://api.github.com/users/Embuer/repos', true)
+request.send()
+printRepoCount();
+</script>
+
+<script>
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+</script>
+
+</body>
+
+</html>

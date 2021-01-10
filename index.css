@@ -1,0 +1,27 @@
+h2 {
+  color: white;
+  text-align: center;
+  font-size: 30px
+}
+p {
+  text-align: center;
+  font-size: 25px
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+}
+a {
+  text-decoration: none;
+  text-align: center;
+  font-size: 20px;
+}
+a.github {
+  color: blue;
+}
+
+a.mailto {
+  color: green;
+  font-size: 20px;
+}
