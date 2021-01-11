@@ -11,6 +11,7 @@
  <h1> {Embuer} </h1>
  <h2>I'm a <span id="age"></span> year-old developer from germany</h2>
  <p> who uses <span id="uses"></span> to code awesome stuff on my <a class="github" href="https://github.com/Embuer">Github</a>!</p>
+ <p> I have been last seen working on <span id="uses"></span></p>
  <p class="info">(everything on this website is self updating)</p>
 
 
@@ -34,10 +35,13 @@ function printRepoCount() {
   });
 
   const languagescolor = [];
+  var zahl = 5;
   languages.forEach((i) => {
-    languagescolor.push('<span style="color:' + getRandomColor() + '">' + i + '</span>');
+    languagescolor.push(' <span style="color:' + getColor(zahl) + '">' + i + '</span>');
+    zahl++;
   });
   document.getElementById('uses').innerHTML = languagescolor.slice(0,-1) + " and " + languagescolor[languages.length - 1];
+
 }
 
 var request = new XMLHttpRequest();
@@ -48,14 +52,10 @@ printRepoCount();
 </script>
 
 <script>
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+function getColor(index) {
+  const colors = ["ffc09f","ffee93","fcf5c7","a0ced9","adf7b6", "3C91E6", "E43F6F", "34D1BF", "80a1d4","ed6a5e","ffc857","b3ffb3","81F7E5"];
+  return '#' + colors[index];
+
 </script>
 
 </body>
