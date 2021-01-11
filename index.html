@@ -9,9 +9,9 @@
 
  <body>
  <h1>{Embuer}</h1>
- <h2>I'm a <span id="age"></span> year-old developer from germany</h2>
+ <h2>I'm a <span id="age"></span> year-old developer from Germany</h2>
  <p>who uses <span id="uses"></span> to code awesome stuff on my <a class="github" href="https://github.com/Embuer">Github</a>!</p>
- <p>I have been last seen working on <span id="lastseen"></span> </p>
+ <p>I have been last seen working on <a class="github" id="lastseenwebsite"><span id="lastseen"></span></a></p>
  <p class="info">(everything on this website is self updating)</p>
 
 
@@ -54,6 +54,9 @@ request.send()
 function lastseen() {
   var responseObj = JSON.parse(this.responseText);
   document.getElementById("lastseen").innerHTML = responseObj[0].repo.name.split('/')[1];
+
+  var link = "https://github.com/Embuer/" + responseObj[0].repo.name.split('/')[1];
+  document.getElementById("lastseenwebsite").setAttribute("href",link);
 }
 
 var request = new XMLHttpRequest();
@@ -66,7 +69,7 @@ request.send()
 function getColor(index) {
   const colors = ["ffc09f","ffee93","fcf5c7","a0ced9","adf7b6", "3C91E6", "E43F6F", "34D1BF", "80a1d4","ed6a5e","ffc857","b3ffb3","81F7E5"];
   return '#' + colors[index];
-  //// TODO: Random colors ;github.io website; location aus der api;
+  //// TODO: Random colors ;github.io website;
   }
 </script>
 
