@@ -8,6 +8,62 @@
  </head>
 
  <body>
+
+   <script>
+   setInterval(() => {
+    let time = (new Date() - new Date(1102827600000)) / (1000 * 60 * 60 * 24 * 365.25);
+    document.getElementById("age").innerHTML = time.toString().substring(0, 12);
+   }, 50);
+   </script>
+
+   <script>
+   const languages = [];
+   function printRepoCount() {
+     var responseObj = JSON.parse(this.responseText);
+     responseObj.forEach((obj) => {
+       if (!languages.includes(obj.language) && obj.language != null) {
+         languages.push(obj.language)}
+     });
+
+     const languagescolor = [];
+     var zahl = 5;
+     languages.forEach((i) => {
+       languagescolor.push(' <span style="color:' + getColor(zahl) + '">' + i + '</span>');
+       zahl++;
+     });
+     document.getElementById('uses').innerHTML = languagescolor.slice(0,-1) + " and " + languagescolor[languages.length - 1];
+
+   }
+
+   var request = new XMLHttpRequest();
+   request.onload = printRepoCount;
+   request.open('get', 'https://api.github.com/users/Embuer/repos', true)
+   request.send()
+   </script>
+
+   <script>
+   function lastseen() {
+     var responseObj = JSON.parse(this.responseText);
+     document.getElementById("lastseen").innerHTML = responseObj[0].repo.name.split('/')[1];
+
+     var link = "https://github.com/Embuer/" + responseObj[0].repo.name.split('/')[1];
+     document.getElementById("lastseenwebsite").setAttribute("href",link);
+   }
+
+   var request = new XMLHttpRequest();
+   request.onload = lastseen;
+   request.open('get', 'https://api.github.com/users/Embuer/events', true)
+   request.send()
+   </script>
+
+   <script>
+   function getColor(index) {
+     const colors = ["ffc09f","ffee93","fcf5c7","a0ced9","adf7b6", "3C91E6", "E43F6F", "34D1BF", "80a1d4","ed6a5e","ffc857","b3ffb3","81F7E5"];
+     return '#' + colors[index];
+     //// TODO: Random colors ;github.io website; sichere website; schöner machen (schrift und design); noch mehr sachen die ich kann aus api? also dazu schreiben mit / z.b html/css/js (auch anklickbar)
+     }
+   </script>
+
  <h1>{Embuer}</h1>
  <h2>I'm a <span id="age"></span> year-old developer from Germany</h2>
  <p>who uses <span id="uses"></span> to code awesome stuff on my <a class="github" href="https://github.com/Embuer">Github</a>!</p>
@@ -17,61 +73,7 @@
 
 <p><a class="mailto" href="mailto:lennart@urbi.de">Contact me!</a>
 
-<script>
-let ageEl = document.getElementById("age");
-setInterval(() => {
-	let time = (new Date() - new Date(1102827600000)) / (1000 * 60 * 60 * 24 * 365.25);
-	ageEl.innerText = time.toString().substring(0, 12);
-}, 50);
-</script>
 
-<script>
-const languages = [];
-function printRepoCount() {
-  var responseObj = JSON.parse(this.responseText);
-  responseObj.forEach((obj) => {
-    if (!languages.includes(obj.language) && obj.language != null) {
-      languages.push(obj.language)}
-  });
-
-  const languagescolor = [];
-  var zahl = 5;
-  languages.forEach((i) => {
-    languagescolor.push(' <span style="color:' + getColor(zahl) + '">' + i + '</span>');
-    zahl++;
-  });
-  document.getElementById('uses').innerHTML = languagescolor.slice(0,-1) + " and " + languagescolor[languages.length - 1];
-
-}
-
-var request = new XMLHttpRequest();
-request.onload = printRepoCount;
-request.open('get', 'https://api.github.com/users/Embuer/repos', true)
-request.send()
-</script>
-
-<script>
-function lastseen() {
-  var responseObj = JSON.parse(this.responseText);
-  document.getElementById("lastseen").innerHTML = responseObj[0].repo.name.split('/')[1];
-
-  var link = "https://github.com/Embuer/" + responseObj[0].repo.name.split('/')[1];
-  document.getElementById("lastseenwebsite").setAttribute("href",link);
-}
-
-var request = new XMLHttpRequest();
-request.onload = lastseen;
-request.open('get', 'https://api.github.com/users/Embuer/events', true)
-request.send()
-</script>
-
-<script>
-function getColor(index) {
-  const colors = ["ffc09f","ffee93","fcf5c7","a0ced9","adf7b6", "3C91E6", "E43F6F", "34D1BF", "80a1d4","ed6a5e","ffc857","b3ffb3","81F7E5"];
-  return '#' + colors[index];
-  //// TODO: Random colors ;github.io website;
-  }
-</script>
 
 </body>
 
