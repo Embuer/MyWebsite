@@ -20,18 +20,10 @@
    const languages = [];
    function printRepoCount() {
      var responseObj = JSON.parse(this.responseText);
-
-
-       responseObj.forEach((obj) => {
-         if (true) {
-         if (!languages.includes(obj.language) && obj.language != null) {
-           languages.push(obj.language)}
-         } else {
-           if (!languages.includes(printRepoCount2(obj.languages_url)) && printRepoCount2(obj.languages_url) != null) {
-             languages.push(printRepoCount2(obj.languages_url))}
-         }
-       });
-
+     responseObj.forEach((obj) => {
+       if (!languages.includes(obj.language) && obj.language != null) {
+         languages.push(obj.language)}
+     });
 
      const languagescolor = [];
      var zahl = 5;
@@ -85,15 +77,6 @@
      }
      return color;
    }
-   </script>
-   <script>
-      function printRepoCount2(link) {
-        var request2 = new XMLHttpRequest();
-        request2.onload = printRepoCount2;
-        request2.open('get', link, true)
-        request2.send()
-        return JSON.parse(this.responseText);
-      }
    </script>
 
  <h1>{Embuer}</h1>
