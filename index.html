@@ -17,11 +17,11 @@
    </script>
 
    <script>
-   const languages = ["Java","HTML/CSS/JS"];
+   const languages = ["JAVA","HTML/CSS/JS"];
    function printRepoCount() {
      var responseObj = JSON.parse(this.responseText);
      responseObj.forEach((obj) => {
-       if (!languages.indexOf(obj.language) && !languages.includes(obj.language) && obj.language != null) {
+       if (!languages.indexOf(obj.language) && obj.language != null) {
          languages.push(obj.language)}
      });
 
