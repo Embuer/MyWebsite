@@ -17,12 +17,31 @@
    </script>
 
    <script>
-   const languages = ["JAVA","HTML/CSS/JS"];
+
    function printRepoCount() {
-     var responseObj = JSON.parse(this.responseText);
-     responseObj.forEach((obj) => {
-       if (!languages.indexOf(obj.language) && obj.language != null) {
-         languages.push(obj.language)}
+
+    const languages = ["Java", "HTML/CSS/JS"];
+    const languagesLowecase = languages.map(language => language.toLowerCase());
+
+    var responseObj = JSON.parse(this.responseText);
+    var responseLanguages = [];
+
+    responseObj.forEach((obj) => {
+      if (obj.language != null) {
+        responseLanguages.push(obj.language);
+      }
+    });
+
+    uniqueresponse = responseLanguages.filter(function(item, pos, self) {
+      return self.indexOf(item) == pos;
+    })
+
+    uniqueresponse.forEach((obj) => {
+            if (obj != null) {
+              if (!(languagesLowecase.find(a =>a.includes(obj.toLowerCase())))) {
+                languages.push(obj);
+              }
+          } 
      });
 
      const languagescolor = [];
@@ -60,9 +79,8 @@
    function getColor(index) {
      const colors = ["ffc09f","ffee93","fcf5c7","a0ced9","adf7b6", "3C91E6", "E43F6F", "34D1BF", "80a1d4","ed6a5e","ffc857","b3ffb3","81F7E5"];
      if (colors.length <= index) {
-       console.log("hi");
        return getRandomColor();
-       console.log(getRandomColor());
+       //console.log(getRandomColor());
      } else {
        return '#' + colors[index];
      }
